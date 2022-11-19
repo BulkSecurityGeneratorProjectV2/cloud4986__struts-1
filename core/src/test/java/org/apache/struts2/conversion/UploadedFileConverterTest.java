@@ -26,6 +26,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.lang.reflect.Member;
+import java.nio.file.Files;
 import java.util.Collections;
 import java.util.Map;
 
@@ -45,7 +46,7 @@ public class UploadedFileConverterTest {
         target = File.class;
         member = File.class.getMethod("length");
         propertyName = "ignore";
-        tempFile = File.createTempFile("struts", "test");
+        tempFile = Files.createTempFile("struts", "test").toFile();
     }
 
     @After

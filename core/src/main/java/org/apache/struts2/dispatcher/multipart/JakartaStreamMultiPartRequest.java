@@ -30,6 +30,7 @@ import org.apache.struts2.dispatcher.LocalizedMessage;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
+import java.nio.file.Files;
 import java.util.*;
 
 /**
@@ -372,7 +373,7 @@ public class JakartaStreamMultiPartRequest extends AbstractMultiPartRequest {
             prefix = UUID.randomUUID().toString();
         }
 
-        File file = File.createTempFile(prefix + "_", suffix, new File(location));
+        File file = Files.createTempFile(new File(location).toPath(), prefix + "_", suffix).toFile();
         LOG.debug("Creating temporary file '{}' (originally '{}').", file.getName(), fileName);
         return file;
     }

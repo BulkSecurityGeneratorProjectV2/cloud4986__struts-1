@@ -29,6 +29,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CoderResult;
 import java.nio.charset.CodingErrorAction;
+import java.nio.file.Files;
 import java.util.LinkedList;
 
 /**
@@ -135,7 +136,7 @@ public class FastByteArrayOutputStream extends OutputStream {
      * This method is need only for debug. And needed for tests generated files.
      */
     private void writeToFile() {
-        try (FileOutputStream fileOutputStream = new FileOutputStream(File.createTempFile(getClass().getName() + System.currentTimeMillis(), ".log"))){
+        try (FileOutputStream fileOutputStream = new FileOutputStream(Files.createTempFile(getClass().getName() + System.currentTimeMillis(), ".log").toFile())){
             writeTo(fileOutputStream);
         } catch (IOException e) {
             // Ignore
